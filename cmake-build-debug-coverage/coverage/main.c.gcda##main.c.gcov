@@ -1,0 +1,37 @@
+        -:    0:Source:C:/Users/abmartinez/CLionProjects/ftpServer/main.c
+        -:    0:Graph:C:\Users\abmartinez\CLionProjects\ftpServer\cmake-build-debug-coverage\CMakeFiles\ftpServer.dir\main.c.gcno
+        -:    0:Data:C:\Users\abmartinez\CLionProjects\ftpServer\cmake-build-debug-coverage\CMakeFiles\ftpServer.dir\main.c.gcda
+        -:    0:Runs:1
+        -:    1:#include <stdio.h>
+        -:    2:
+function main called 1 returned 100% blocks executed 100%
+        1:    3:int main() {
+        -:    4:
+        -:    5:    //read a test file and print it out
+        -:    6:    FILE *fp;
+        -:    7:    char buff[255];
+        -:    8:
+        1:    9:    fp = fopen("C:\Temp\hola.txt", "r");
+        1:    9-block  0
+call    0 returned 1
+        1:   10:    fscanf(fp, "%s", buff);
+call    0 returned 1
+        1:   11:    printf("1: %s\n", buff);
+call    0 returned 1
+        -:   12:
+        1:   13:    fgets(buff, 255, (FILE*)fp);
+call    0 returned 1
+        1:   14:    printf("2: %s\n", buff);
+call    0 returned 1
+        -:   15:
+        1:   16:    fgets(buff, 255, (FILE*)fp);
+call    0 returned 1
+        1:   17:    printf("3: %s\n", buff);
+call    0 returned 1
+        1:   18:    fclose(fp);
+call    0 returned 1
+        -:   19:
+        1:   20:    return 0;
+        -:   21:
+        -:   22:
+        -:   23:}
