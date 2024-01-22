@@ -4,7 +4,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
-#pragma comment(lib, "ws2_32.lib") // Vincular con la biblioteca de Winsock
+#pragma comment(lib, "ws2_32.lib") // Vincular con la bibliotecaS  de Winsock
 
 #define PORT 20000
 #define BUFFER_SIZE 1024
