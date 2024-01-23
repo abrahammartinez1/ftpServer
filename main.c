@@ -3,6 +3,7 @@
 #include <string.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#include <io.h>
 
 #pragma comment(lib, "ws2_32.lib") // Vincular con la bibliotecaS  de Winsock
 
@@ -133,7 +134,30 @@ void handleCheck(SOCKET client_fd, const char* filename) {
 
 void handleRemove(SOCKET client_fd, const char* filename) {
     // Lógica para manejar la eliminación de archivos
-}
+
+        char fullpath[260]; // 260 es el límite en Windows para rutas de archivos
+        snprintf(fullpath, sizeof(fullpath), "serverDir/%s", filename);
+
+        // Verificar si el archivo existe
+        if (access(fullpath, F_OK) == -1) {
+            // El archivo no existe, enviar código de error al cliente
+            send(client_fd, "Error: El archivo no existe\n", 30, 0);
+            perror("Error al intentar acceder al archivo");
+            return;
+        }
+
+        // Intentar eliminar el archivo
+        if (remove(fullpath) == 0) {
+            // Archivo eliminado exitosamente
+            send(client_fd, "Archivo eliminado con éxito\n", 29, 0);
+        } else {
+            // Error al intentar eliminar el archivo
+            send(client_fd, "Error al eliminar el archivo\n", 30, 0);
+            perror("Error al intentar eliminar el archivo");
+        }
+    }
+
+
 
 void handleDownload(SOCKET client_fd, const char* filename) {
     // Lógica para manejar la descarga de archivos
